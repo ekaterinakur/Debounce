@@ -9,14 +9,13 @@
      * Функция onChange должна получать тот же `this` и аргументы, что и обёртка
      **/
 const input = document.querySelector('input');
-let timer = null;
 
-function debounce(f, delay) {
-  return function(e) {
+function debounce(func, delay) {
+  let timer = null;
+
+  return function(event) {
     clearTimeout(timer);
-    
-    const fWithContext = f.bind(this, e);
-    timer = setTimeout(fWithContext, delay);
+    timer = setTimeout(func.bind(this, event), delay);
   }
 }
 
